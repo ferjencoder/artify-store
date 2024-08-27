@@ -1,3 +1,5 @@
+//CartManager.js
+
 import fs from 'fs';
 
 const CARTS_FILE_PATH = './src/files/carts.json';

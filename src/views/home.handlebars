@@ -1,0 +1,23 @@
+{{!--views/home.handlebars--}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1 class="text-center">Bienvenido a Artify</h1>
+    <p class="text-center">Explora nuestra colección de arte digital y pósters.</p>
+
+    <h2 class="mt-4">Lista de Productos</h2>
+    <ul class="list-group">
+        {{#each products}}
+            <li class="list-group-item">
+                <strong>{{this.title}}</strong> - ${{this.price}}
+            </li>
+        {{/each}}
+    </ul>
+</body>
+</html>

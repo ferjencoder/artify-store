@@ -1,308 +1,155 @@
 [
 	{
-		"id": 2,
-		"title": "Advanced Registration Form",
-		"category": "Dynamic Forms",
-		"code": "string",
-		"demoUrl": "/demo/advanced-registration-form",
-		"shortDescription": "An elaborate registration form.",
-		"description": "An advanced registration form with various field types, tooltips, and validation. This form has been created using React and Formik, and includes extensive form validation and error messages.",
+		"id": 1,
+		"title": "Mystic Forest",
+		"category": "Nature",
+		"code": "NF001",
+		"demoUrl": "/demo/mystic-forest",
+		"shortDescription": "A serene, misty forest scene.",
+		"description": "This poster captures the tranquility of a forest blanketed in mist, with tall trees fading into the fog. Perfect for creating a calming atmosphere in any room.",
 		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
+			"https://example.com/images/mystic-forest-1.jpg",
+			"https://example.com/images/mystic-forest-2.jpg",
+			"https://example.com/images/mystic-forest-3.jpg"
 		],
 		"status": true,
-		"stock": 10,
-		"price": 3
+		"stock": 50,
+		"price": 15.99
+	},
+	{
+		"id": 2,
+		"title": "Cosmic Dreams",
+		"category": "Abstract",
+		"code": "AB002",
+		"demoUrl": "/demo/cosmic-dreams",
+		"shortDescription": "An abstract representation of a cosmic landscape.",
+		"description": "This digital artwork showcases swirling galaxies, bright stars, and colorful nebulae, offering a vibrant and dynamic addition to any space.",
+		"thumbnails": [
+			"https://example.com/images/cosmic-dreams-1.jpg",
+			"https://example.com/images/cosmic-dreams-2.jpg",
+			"https://example.com/images/cosmic-dreams-3.jpg"
+		],
+		"status": true,
+		"stock": 30,
+		"price": 19.99
 	},
 	{
 		"id": 3,
-		"title": "Basic Data Table",
-		"category": "Data Tables",
-		"code": "string",
-		"demoUrl": "/demo/basic-data-table",
-		"shortDescription": "A simple data table.",
-		"description": "A basic data table with sorting and pagination. Built with React, it is ideal for displaying any data in a tabular format with the option to sort and paginate through the data.",
+		"title": "Urban Jungle",
+		"category": "Cityscapes",
+		"code": "CS003",
+		"demoUrl": "/demo/urban-jungle",
+		"shortDescription": "A bustling city scene with a twist of greenery.",
+		"description": "This poster blends the modern architecture of a bustling city with elements of nature, creating a unique urban landscape infused with greenery.",
 		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
+			"https://example.com/images/urban-jungle-1.jpg",
+			"https://example.com/images/urban-jungle-2.jpg",
+			"https://example.com/images/urban-jungle-3.jpg"
 		],
 		"status": true,
-		"stock": 10,
-		"price": 3
+		"stock": 40,
+		"price": 17.99
 	},
 	{
 		"id": 4,
-		"title": "Advanced Data Table",
-		"category": "Data Tables",
-		"code": "string",
-		"demoUrl": "/demo/advanced-data-table",
-		"shortDescription": "A feature-rich data table.",
-		"description": "An advanced data table with sorting, filtering, pagination, and row selection. Built with React and Material-UI, it offers a wide range of functionalities that can handle complex data table requirements.",
+		"title": "Galactic Voyage",
+		"category": "Space",
+		"code": "SP004",
+		"demoUrl": "/demo/galactic-voyage",
+		"shortDescription": "A journey through the stars.",
+		"description": "This poster takes you on a journey through the cosmos, featuring vibrant planets, distant stars, and mysterious celestial objects. A perfect piece for space enthusiasts.",
 		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
+			"https://example.com/images/galactic-voyage-1.jpg",
+			"https://example.com/images/galactic-voyage-2.jpg",
+			"https://example.com/images/galactic-voyage-3.jpg"
 		],
 		"status": true,
-		"stock": 10,
-		"price": 3
+		"stock": 20,
+		"price": 22.99
 	},
 	{
 		"id": 5,
-		"title": "Basic Bar Chart",
-		"category": "Charts/Graphs",
-		"code": "string",
-		"demoUrl": "/demo/basic-bar-chart",
-		"shortDescription": "A simple bar chart.",
-		"description": "A basic bar chart for data visualization. Built with React and Chart.js, this component provides an easy way to visualize data in a bar chart format.",
+		"title": "Ocean Serenity",
+		"category": "Nature",
+		"code": "NF005",
+		"demoUrl": "/demo/ocean-serenity",
+		"shortDescription": "A peaceful ocean scene at sunset.",
+		"description": "This artwork captures the serene beauty of the ocean at sunset, with gentle waves and a vibrant sky. It's a perfect addition for creating a calm and relaxing ambiance.",
 		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
+			"https://example.com/images/ocean-serenity-1.jpg",
+			"https://example.com/images/ocean-serenity-2.jpg",
+			"https://example.com/images/ocean-serenity-3.jpg"
 		],
 		"status": true,
-		"stock": 10,
-		"price": 3
+		"stock": 35,
+		"price": 18.99
 	},
 	{
 		"id": 6,
-		"title": "Advanced Line Graph",
-		"category": "Charts/Graphs",
-		"code": "string",
-		"demoUrl": "/demo/advanced-line-graph",
-		"shortDescription": "A multi-dataset line graph.",
-		"description": "An advanced line graph with multiple datasets. Built with React and Chart.js, this component allows you to visualize multiple sets of data on a single graph.",
+		"title": "Vibrant Geometrics",
+		"category": "Abstract",
+		"code": "AB006",
+		"demoUrl": "/demo/vibrant-geometrics",
+		"shortDescription": "A colorful abstract geometric design.",
+		"description": "This poster features a bold and vibrant geometric design, perfect for adding a pop of color and a modern touch to any space.",
 		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
+			"https://example.com/images/vibrant-geometrics-1.jpg",
+			"https://example.com/images/vibrant-geometrics-2.jpg",
+			"https://example.com/images/vibrant-geometrics-3.jpg"
 		],
 		"status": true,
-		"stock": 10,
-		"price": 3
+		"stock": 25,
+		"price": 16.99
 	},
 	{
 		"id": 7,
-		"title": "Simple Location Map",
-		"category": "Interactive Maps",
-		"code": "string",
-		"demoUrl": "/demo/simple-location-map",
-		"shortDescription": "A location pinpoint map.",
-		"description": "A simple map displaying a location. Built with React and Leaflet, this component allows you to display any location on a map with a marker.",
+		"title": "Zen Garden",
+		"category": "Nature",
+		"code": "NF007",
+		"demoUrl": "/demo/zen-garden",
+		"shortDescription": "A minimalist Zen garden scene.",
+		"description": "This artwork captures the essence of tranquility with a minimalist Zen garden, featuring raked sand, smooth stones, and delicate plants. Ideal for creating a peaceful atmosphere.",
 		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
+			"https://example.com/images/zen-garden-1.jpg",
+			"https://example.com/images/zen-garden-2.jpg",
+			"https://example.com/images/zen-garden-3.jpg"
 		],
 		"status": true,
-		"stock": 10,
-		"price": 3
+		"stock": 40,
+		"price": 14.99
 	},
 	{
 		"id": 8,
-		"title": "Interactive Map",
-		"category": "Interactive Maps",
-		"code": "string",
-		"demoUrl": "/demo/interactive-map",
-		"shortDescription": "A map with multiple markers.",
-		"description": "An interactive map with multiple markers and information popups. Built with React and Leaflet, this component can be used to display multiple locations on a map, each with its own information popup.",
+		"title": "Metropolis Lights",
+		"category": "Cityscapes",
+		"code": "CS008",
+		"demoUrl": "/demo/metropolis-lights",
+		"shortDescription": "A vibrant cityscape at night.",
+		"description": "This poster showcases a bustling metropolis illuminated at night, capturing the energy and vibrancy of city life. Perfect for adding a dynamic touch to any room.",
 		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
+			"https://example.com/images/metropolis-lights-1.jpg",
+			"https://example.com/images/metropolis-lights-2.jpg",
+			"https://example.com/images/metropolis-lights-3.jpg"
 		],
 		"status": true,
-		"stock": 10,
-		"price": 3
+		"stock": 30,
+		"price": 20.99
 	},
 	{
 		"id": 9,
-		"title": "Sign In Form",
-		"category": "Authentication Components",
-		"code": "string",
-		"demoUrl": "/demo/sign-in-form",
-		"shortDescription": "A basic sign in form.",
-		"description": "A sign in form with email and password fields. Built with React, it includes basic form validation and error handling.",
+		"title": "Golden Horizon",
+		"category": "Abstract",
+		"code": "AB009",
+		"demoUrl": "/demo/golden-horizon",
+		"shortDescription": "An abstract representation of a golden horizon.",
+		"description": "This abstract artwork features a stunning golden horizon with soft gradients and bold strokes, creating a captivating visual experience.",
 		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
+			"https://example.com/images/golden-horizon-1.jpg",
+			"https://example.com/images/golden-horizon-2.jpg",
+			"https://example.com/images/golden-horizon-3.jpg"
 		],
 		"status": true,
-		"stock": 10,
-		"price": 3
-	},
-	{
-		"id": 10,
-		"title": "User Profile",
-		"category": "Authentication Components",
-		"code": "string",
-		"demoUrl": "/demo/user-profile",
-		"shortDescription": "A user profile display component.",
-		"description": "A user profile component displaying user information. Built with React, it can be used to display user details like name, email, profile picture, and more.",
-		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
-		],
-		"status": true,
-		"stock": 10,
-		"price": 3
-	},
-	{
-		"id": 11,
-		"title": "Basic Dashboard",
-		"category": "Dashboards",
-		"code": "string",
-		"demoUrl": "/demo/basic-dashboard",
-		"shortDescription": "A dashboard with widgets and summaries.",
-		"description": "A basic dashboard with various widgets and data summaries. Built with React, this component offers a clear view of your data and key performance indicators.",
-		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
-		],
-		"status": true,
-		"stock": 10,
-		"price": 3
-	},
-	{
-		"id": 12,
-		"title": "Advanced Dashboard",
-		"category": "Dashboards",
-		"code": "string",
-		"demoUrl": "/demo/advanced-dashboard",
-		"shortDescription": "A dashboard with customizable widgets.",
-		"description": "An advanced dashboard with customizable widgets, graphs, and data summaries. Built with React and Material-UI, this component allows for a high degree of customization.",
-		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
-		],
-		"status": true,
-		"stock": 10,
-		"price": 3
-	},
-	{
-		"id": 13,
-		"title": "Basic Shopping Cart",
-		"category": "Shopping Cart",
-		"code": "string",
-		"demoUrl": "/demo/basic-shopping-cart",
-		"shortDescription": "A shopping cart for adding/viewing items.",
-		"description": "A basic shopping cart component that allows users to add and view items. Built with React, this component includes features such as item count and total price calculation.",
-		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
-		],
-		"status": true,
-		"stock": 10,
-		"price": 3
-	},
-	{
-		"id": 14,
-		"title": "Advanced Shopping Cart",
-		"category": "Shopping Cart",
-		"code": "string",
-		"demoUrl": "/demo/advanced-shopping-cart",
-		"shortDescription": "A shopping cart with checkout feature.",
-		"description": "An advanced shopping cart component that allows users to add items, view the cart, and checkout. Built with React, this component includes features such as item count, total price calculation, and a checkout form.",
-		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
-		],
-		"status": true,
-		"stock": 10,
-		"price": 3
-	},
-	{
-		"id": 15,
-		"title": "Basic Image Slider",
-		"category": "Image Sliders/Carousels",
-		"code": "string",
-		"demoUrl": "/demo/basic-image-slider",
-		"shortDescription": "A carousel for showcasing images.",
-		"description": "A basic responsive carousel component for showcasing images. Built with React, this component allows you to display an array of images in a slider format.",
-		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
-		],
-		"status": true,
-		"stock": 10,
-		"price": 3
-	},
-	{
-		"id": 16,
-		"title": "Advanced Content Carousel",
-		"category": "Image Sliders/Carousels",
-		"code": "string",
-		"demoUrl": "/demo/advanced-content-carousel",
-		"shortDescription": "A carousel for showcasing content cards.",
-		"description": "An advanced carousel component for showcasing content cards. Built with React, this component allows you to display an array of content cards in a slider format with advanced features.",
-		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
-		],
-		"status": true,
-		"stock": 10,
-		"price": 3
-	},
-	{
-		"id": 17,
-		"title": "Linear Progress Bar",
-		"category": "Progress Bars",
-		"code": "string",
-		"demoUrl": "/demo/linear-progress-bar",
-		"shortDescription": "A linear progress bar with animations.",
-		"description": "A linear progress bar with animation. This component is built with React and Material-UI and is perfect for indicating progress or loading status.",
-		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
-		],
-		"status": true,
-		"stock": 10,
-		"price": 3
-	},
-	{
-		"id": 18,
-		"title": "Circular Progress Bar",
-		"category": "Progress Bars",
-		"code": "string",
-		"demoUrl": "/demo/circular-progress-bar",
-		"shortDescription": "A circular progress bar with animations.",
-		"description": "A circular progress bar with animation. This component is built with React and Material-UI and is perfect for indicating progress or loading status in a circular format.",
-		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
-		],
-		"status": true,
-		"stock": 10,
-		"price": 3
-	},
-	{
-		"id": 19,
-		"title": "Basic Info Card",
-		"category": "Card Components",
-		"code": "string",
-		"demoUrl": "/demo/basic-info-card",
-		"shortDescription": "A card for displaying basic information.",
-		"description": "A basic card component for displaying information, with an image, title, and description. Built with React and Material-UI, this component is perfect for displaying a brief overview of an item or topic.",
-		"thumbnails": [
-			"https:1",
-			"https:2",
-			"https:3"
-		],
-		"status": true,
-		"stock": 10,
-		"price": 3
+		"stock": 25,
+		"price": 21.99
 	}
 ]

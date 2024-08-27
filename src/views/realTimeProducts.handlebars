@@ -1,0 +1,103 @@
+{{!--views/realTimeProducts.handlebars--}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Time Products</title>
+</head>
+<body>
+    <h1 class="text-center">Productos en Tiempo Real</h1>
+    <ul id="products-list" class="list-group">
+        {{#each products}}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><strong>{{this.title}}</strong> - ${{this.price}} - Stock: {{this.stock}}</span>
+                <button class="btn btn-danger delete-product" data-id="{{this.id}}">Eliminar</button>
+            </li>
+        {{/each}}
+    </ul>
+
+    <h2 class="mt-4">Añadir Producto</h2>
+    <form id="product-form">
+        <div class="form-group">
+            <input type="text" id="title" class="form-control" placeholder="Título" required>
+        </div>
+        <div class="form-group">
+            <input type="text" id="shortDescription" class="form-control" placeholder="Descripción Corta" required>
+        </div>
+        <div class="form-group">
+            <input type="number" id="price" class="form-control" placeholder="Precio" required>
+        </div>
+        <div class="form-group">
+            <input type="number" id="stock" class="form-control" placeholder="Stock" required>
+        </div>
+        <div class="form-group">
+            <input type="text" id="description" class="form-control" placeholder="Descripción (Opcional)">
+        </div>
+        <div class="form-group">
+            <input type="text" id="code" class="form-control" placeholder="Código (Opcional)">
+        </div>
+        <div class="form-group">
+            <input type="text" id="category" class="form-control" placeholder="Categoría (Opcional)">
+        </div>
+        <div class="form-group">
+            <input type="text" id="thumbnails" class="form-control" placeholder="URLs de Imágenes (Opcional, separadas por comas)">
+        </div>
+        <div class="form-group">
+            <input type="text" id="demoUrl" class="form-control" placeholder="URL de Demo (Opcional)">
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar Producto</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on('updateProducts', (products) => {
+            const productsList = document.getElementById('products-list');
+            productsList.innerHTML = '';
+            products.forEach(product => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                li.innerHTML = `<span><strong>${product.title}</strong> - $${product.price} - Stock: ${product.stock}</span>`;
+                
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Eliminar';
+                deleteButton.className = 'btn btn-danger delete-product';
+                deleteButton.setAttribute('data-id', product.id);
+                
+                li.appendChild(deleteButton);
+                productsList.appendChild(li);
+            });
+
+            document.querySelectorAll('.delete-product').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = e.target.getAttribute('data-id');
+                    socket.emit('deleteProduct', productId);
+                });
+            });
+        });
+
+        const form = document.getElementById('product-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const shortDescription = document.getElementById('shortDescription').value;
+            const price = document.getElementById('price').value;
+            const stock = document.getElementById('stock').value;
+            const description = document.getElementById('description').value || null;
+            const code = document.getElementById('code').value || null;
+            const category = document.getElementById('category').value || null;
+            const thumbnails = document.getElementById('thumbnails').value ? document.getElementById('thumbnails').value.split(',') : [];
+            const demoUrl = document.getElementById('demoUrl').value || null;
+            
+            socket.emit('newProduct', { title, shortDescription, price, stock, description, code, category, thumbnails, demoUrl });
+            form.reset();
+        });
+    </script>
+
+</body>
+</html>
+
+

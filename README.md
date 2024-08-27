@@ -1,6 +1,6 @@
-# Proyecto Final - Primera Entrega
+# Artify - Proyecto Final
 
-Este proyecto es parte de la primera entrega del curso de backend. Se trata de un servidor desarrollado en Node.js y Express que gestiona productos y carritos de compra para un sistema de e-commerce.
+Este proyecto es parte de la primera entrega del curso de backend para Coderhouse. Se trata de un servidor desarrollado en Node.js y Express que gestiona productos y carritos de compra para un sistema de e-commerce especializado en Pósters y Arte Digital.
 
 ## Tabla de Contenidos
 
@@ -15,7 +15,7 @@ Este proyecto es parte de la primera entrega del curso de backend. Se trata de u
 
 ## Descripción
 
-El proyecto consiste en un servidor que escucha en el puerto 8080 y dispone de dos grupos de rutas principales: `/api/products` y `/api/carts`. Estas rutas permiten gestionar productos y carritos de compra, respectivamente.
+Artify es una tienda en línea especializada en Pósters y Arte Digital. El servidor gestiona productos y carritos de compra, con funcionalidades en tiempo real mediante WebSockets y una interfaz mejorada utilizando Bootstrap, inspirada en la paleta de colores "Mystic Forest".
 
 ## Instalación
 
@@ -85,6 +85,9 @@ Estos archivos se encuentran en la carpeta `src/files/`.
 
 - Node.js
 - Express
+- WebSockets (socket.io) para actualizaciones en tiempo real
+- Handlebars para la renderización de vistas
+- Bootstrap para el diseño y estilo
 - File System para la persistencia de datos
 
 ## Contribuciones

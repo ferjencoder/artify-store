@@ -1,3 +1,5 @@
+//routes/products.js
+
 import express from 'express';
 import ProductManager from '../managers/ProductManager.js';
 

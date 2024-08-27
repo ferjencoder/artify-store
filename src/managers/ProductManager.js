@@ -1,8 +1,13 @@
+//ProductManager.js
+
 import fs from 'fs';
 
 const PRODUCTS_FILE_PATH = './src/files/products.json';
 
 export default class ProductManager {
+    constructor(io) {
+        this.io = io; // Guardamos la referencia al servidor socket.io
+    }
 
     async getProducts(num) {
         if (fs.existsSync(PRODUCTS_FILE_PATH)) {
@@ -26,34 +31,39 @@ export default class ProductManager {
         }
     }
 
-    async addProduct(title, description, code, price, stock, category, thumbnails = [], demoUrl) {
-    if (!title || !description || !code || price === undefined || stock === undefined || !category || !demoUrl) {
-        throw new Error('Missing required product fields');
+    async addProduct(title, description, shortDescription, code, price, stock, category, thumbnails = [], demoUrl) {
+        if (!title || !shortDescription || price === undefined || stock === undefined) {
+            throw new Error('Faltan campos obligatorios');
+        }
+
+        const products = await this.getProducts();
+        const newProduct = {
+            id: products.length ? Math.max(...products.map(p => p.id)) + 1 : 1,
+            title,
+            description: description || null,
+            shortDescription,
+            code: code || null,
+            price,
+            status: true,
+            stock,
+            category: category || null,
+            thumbnails,
+            demoUrl: demoUrl || null
+        };
+
+        products.push(newProduct);
+
+        try {
+            await fs.promises.writeFile(PRODUCTS_FILE_PATH, JSON.stringify(products, null, '\t'));
+            
+            // Emitir el evento de actualización de productos
+            this.io.emit('updateProducts', products);
+
+        } catch (err) {
+            console.error('Failed to write to file:', err);
+            throw new Error('Failed to save product');
+        }
     }
-
-    const products = await this.getProducts();
-    const newProduct = {
-        id: products.length ? Math.max(...products.map(p => p.id)) + 1 : 1,
-        title,
-        description,
-        code,
-        price,
-        status: true, // por default es verdadero
-        stock,
-        category,
-        thumbnails,
-        demoUrl
-    };
-
-    products.push(newProduct);
-
-    try {
-        await fs.promises.writeFile(PRODUCTS_FILE_PATH, JSON.stringify(products, null, '\t'));
-    } catch (err) {
-        console.error('Failed to write to file:', err);
-        throw new Error('Failed to save product');
-    }
-}
 
 
     async updateProduct(id, productData) {
@@ -70,6 +80,9 @@ export default class ProductManager {
 
         await fs.promises.writeFile(PRODUCTS_FILE_PATH, JSON.stringify(products, null, '\t'));
 
+        // Emitir evento para actualizar la lista de productos en tiempo real
+        this.io.emit('updateProducts', products);
+
         return updatedProduct;
     }
 
@@ -83,6 +96,10 @@ export default class ProductManager {
 
         try {
             await fs.promises.writeFile(PRODUCTS_FILE_PATH, JSON.stringify(filteredProducts, null, '\t'));
+
+            // Emitir evento para actualizar la lista de productos en tiempo real
+            this.io.emit('updateProducts', filteredProducts);
+
         } catch (error) {
             console.error('Error writing to file:', error);
             throw error;
