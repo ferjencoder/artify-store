@@ -13,7 +13,7 @@
         {{#each products}}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span><strong>{{this.title}}</strong> - ${{this.price}} - Stock: {{this.stock}}</span>
-                <button class="btn btn-danger delete-product" data-id="{{this.id}}">Eliminar</button>
+                <button class="btn btn-danger delete-product" data-id="{{this._id}}">Eliminar</button> <!-- Se usa _id -->
             </li>
         {{/each}}
     </ul>
@@ -65,7 +65,7 @@
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Eliminar';
                 deleteButton.className = 'btn btn-danger delete-product';
-                deleteButton.setAttribute('data-id', product.id);
+                deleteButton.setAttribute('data-id', product._id); // Se usa _id
                 
                 li.appendChild(deleteButton);
                 productsList.appendChild(li);
@@ -99,5 +99,3 @@
 
 </body>
 </html>
-
-

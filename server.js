@@ -1,7 +1,10 @@
+//server.js
+
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { engine } from 'express-handlebars';
+import mongoose from 'mongoose';
 import productRoutes from './src/routes/products.js';
 import cartRoutes from './src/routes/carts.js';
 import viewsRoutes from './src/routes/views.js';
@@ -10,8 +13,22 @@ import ProductManager from './src/managers/ProductManager.js';
 const app = express();
 const PORT = 8080;
 
-// Configurar Handlebars
-app.engine('handlebars', engine());
+// Conectar a MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/artify-store')
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch((err) => {
+        console.error('Error connecting to MongoDB:', err);
+    });
+
+// Configurar Handlebars con opciones para permitir acceso a propiedades de prototipo
+app.engine('handlebars', engine({
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true,
+    }
+}));
 app.set('view engine', 'handlebars');
 app.set('views', './src/views');
 
@@ -59,16 +76,15 @@ io.on('connection', (socket) => {
         }
     });
 
-
     // Escuchar el evento 'deleteProduct' desde el cliente
     socket.on('deleteProduct', async (productId) => {
         try {
-            await productManager.deleteProduct(parseInt(productId));
+            // Eliminar producto por su ObjectId
+            await productManager.deleteProduct(productId);
         } catch (error) {
             console.error('Error al eliminar producto:', error);
         }
     });
-
 });
 
 // Rutas

@@ -8,16 +8,26 @@
     <title>Home</title>
 </head>
 <body>
-    <h1 class="text-center">Bienvenido a Artify</h1>
-    <p class="text-center">Explora nuestra colección de arte digital y pósters.</p>
+    <div class="container">
+        <h1 class="text-center mt-4">Bienvenido a Artify</h1>
+        <p class="text-center">Explora nuestra colección de arte digital y pósters.</p>
 
-    <h2 class="mt-4">Lista de Productos</h2>
-    <ul class="list-group">
-        {{#each products}}
-            <li class="list-group-item">
-                <strong>{{this.title}}</strong> - ${{this.price}}
-            </li>
-        {{/each}}
-    </ul>
+        <h2 class="mt-5">Lista de Productos</h2>
+        <div class="row">
+            {{#each products}}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{#if this.thumbnails.[0]}}{{this.thumbnails.[0]}}{{else}}/path/to/default-image.jpg{{/if}}" class="card-img-top" alt="{{this.title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.title}}</h5>
+                        <p class="card-text">{{this.shortDescription}}</p>
+                        <p class="card-text"><strong>${{this.price}}</strong></p>
+                        <a href="/products/{{this._id}}" class="btn btn-primary">Ver Detalles</a> <!-- Usar _id en lugar de id para MongoDB -->
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 </body>
 </html>

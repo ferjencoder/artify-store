@@ -1,44 +1,30 @@
-//ProductManager.js
+//managers/ProductManager.js
 
-import fs from 'fs';
-
-const PRODUCTS_FILE_PATH = './src/files/products.json';
+import Product from '../models/Product.js';
 
 export default class ProductManager {
     constructor(io) {
-        this.io = io; // Guardamos la referencia al servidor socket.io
+        this.io = io; // Referencia al servidor socket.io
     }
 
-    async getProducts(num) {
-        if (fs.existsSync(PRODUCTS_FILE_PATH)) {
-            try {
-                const data = await fs.promises.readFile(PRODUCTS_FILE_PATH, 'utf-8');
-                const products = JSON.parse(data);
-
-                if (num !== undefined) {
-                    return products.slice(0, num);
-                }
-
-                return products;
-
-            } catch (error) {
-                console.error('Error reading the products file:', error);
-                return [];
-            }
-        } else {
-            console.warn(`${PRODUCTS_FILE_PATH} doesn't exist`);
+    // Obtener todos los productos con un límite opcional
+    async getProducts(limit) {
+        try {
+            const products = await Product.find().limit(limit || 10); // Mongoose find()
+            return products;
+        } catch (error) {
+            console.error('Error fetching products from MongoDB:', error);
             return [];
         }
     }
 
+    // Agregar un nuevo producto
     async addProduct(title, description, shortDescription, code, price, stock, category, thumbnails = [], demoUrl) {
         if (!title || !shortDescription || price === undefined || stock === undefined) {
             throw new Error('Faltan campos obligatorios');
         }
 
-        const products = await this.getProducts();
-        const newProduct = {
-            id: products.length ? Math.max(...products.map(p => p.id)) + 1 : 1,
+        const newProduct = new Product({
             title,
             description: description || null,
             shortDescription,
@@ -49,71 +35,60 @@ export default class ProductManager {
             category: category || null,
             thumbnails,
             demoUrl: demoUrl || null
-        };
-
-        products.push(newProduct);
+        });
 
         try {
-            await fs.promises.writeFile(PRODUCTS_FILE_PATH, JSON.stringify(products, null, '\t'));
-            
-            // Emitir el evento de actualización de productos
-            this.io.emit('updateProducts', products);
-
+            const savedProduct = await newProduct.save(); // Guarda en MongoDB
+            this.io.emit('updateProducts', await this.getProducts()); // Emite evento de actualización
+            return savedProduct;
         } catch (err) {
-            console.error('Failed to write to file:', err);
+            console.error('Failed to save product to MongoDB:', err);
             throw new Error('Failed to save product');
         }
     }
 
-
+    // Actualizar un producto existente por su ID
     async updateProduct(id, productData) {
-        const products = await this.getProducts();
-        const productIndex = products.findIndex(product => product.id === id);
+        try {
+            const updatedProduct = await Product.findByIdAndUpdate(id, productData, { new: true }); // Actualiza en MongoDB
+            if (!updatedProduct) {
+                throw new Error('Product not found');
+            }
 
-        if (productIndex === -1) {
+            this.io.emit('updateProducts', await this.getProducts()); // Emite evento de actualización
+            return updatedProduct;
+        } catch (error) {
+            console.error('Error updating product in MongoDB:', error);
             return null;
         }
-
-        const updatedProduct = { ...products[productIndex], ...productData, id };
-
-        products[productIndex] = updatedProduct;
-
-        await fs.promises.writeFile(PRODUCTS_FILE_PATH, JSON.stringify(products, null, '\t'));
-
-        // Emitir evento para actualizar la lista de productos en tiempo real
-        this.io.emit('updateProducts', products);
-
-        return updatedProduct;
     }
 
+    // Eliminar un producto por su ID
     async deleteProduct(id) {
-        const products = await this.getProducts();
-        const filteredProducts = products.filter(product => product.id !== id);
-
-        if (products.length === filteredProducts.length) {
-            throw new Error(`Product with id ${id} not found`);
-        }
-
         try {
-            await fs.promises.writeFile(PRODUCTS_FILE_PATH, JSON.stringify(filteredProducts, null, '\t'));
+            const deletedProduct = await Product.findByIdAndDelete(id); // Elimina en MongoDB
+            if (!deletedProduct) {
+                throw new Error('Product not found');
+            }
 
-            // Emitir evento para actualizar la lista de productos en tiempo real
-            this.io.emit('updateProducts', filteredProducts);
-
+            this.io.emit('updateProducts', await this.getProducts()); // Emite evento de actualización
         } catch (error) {
-            console.error('Error writing to file:', error);
+            console.error('Error deleting product in MongoDB:', error);
             throw error;
         }
     }
 
+    // Obtener un producto por su ID
     async getProductById(id) {
-        const products = await this.getProducts();
-        const searchedProduct = products.find(product => product.id === id);
-
-        if (!searchedProduct) {
+        try {
+            const product = await Product.findById(id); // Busca en MongoDB
+            if (!product) {
+                throw new Error('Product not found');
+            }
+            return product;
+        } catch (error) {
+            console.error('Error fetching product from MongoDB:', error);
             throw new Error('Product not found');
         }
-
-        return searchedProduct;
     }
 }
