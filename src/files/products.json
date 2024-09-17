@@ -8,9 +8,7 @@
 		"shortDescription": "A serene, misty forest scene.",
 		"description": "This poster captures the tranquility of a forest blanketed in mist, with tall trees fading into the fog. Perfect for creating a calming atmosphere in any room.",
 		"thumbnails": [
-			"https://example.com/images/mystic-forest-1.jpg",
-			"https://example.com/images/mystic-forest-2.jpg",
-			"https://example.com/images/mystic-forest-3.jpg"
+			"https://res.cloudinary.com/ferjen/image/upload/v1726541978/artify-store/posters/01-Poster_sw6rpr.jpg"
 		],
 		"status": true,
 		"stock": 50,
@@ -25,9 +23,7 @@
 		"shortDescription": "An abstract representation of a cosmic landscape.",
 		"description": "This digital artwork showcases swirling galaxies, bright stars, and colorful nebulae, offering a vibrant and dynamic addition to any space.",
 		"thumbnails": [
-			"https://example.com/images/cosmic-dreams-1.jpg",
-			"https://example.com/images/cosmic-dreams-2.jpg",
-			"https://example.com/images/cosmic-dreams-3.jpg"
+			"https://res.cloudinary.com/ferjen/image/upload/v1726541978/artify-store/posters/02-Poster_wx7pix.jpg"
 		],
 		"status": true,
 		"stock": 30,
@@ -42,9 +38,7 @@
 		"shortDescription": "A bustling city scene with a twist of greenery.",
 		"description": "This poster blends the modern architecture of a bustling city with elements of nature, creating a unique urban landscape infused with greenery.",
 		"thumbnails": [
-			"https://example.com/images/urban-jungle-1.jpg",
-			"https://example.com/images/urban-jungle-2.jpg",
-			"https://example.com/images/urban-jungle-3.jpg"
+			"https://res.cloudinary.com/ferjen/image/upload/v1726541978/artify-store/posters/03-Poster_rivzqg.jpg"
 		],
 		"status": true,
 		"stock": 40,
@@ -59,9 +53,7 @@
 		"shortDescription": "A journey through the stars.",
 		"description": "This poster takes you on a journey through the cosmos, featuring vibrant planets, distant stars, and mysterious celestial objects. A perfect piece for space enthusiasts.",
 		"thumbnails": [
-			"https://example.com/images/galactic-voyage-1.jpg",
-			"https://example.com/images/galactic-voyage-2.jpg",
-			"https://example.com/images/galactic-voyage-3.jpg"
+			"https://res.cloudinary.com/ferjen/image/upload/v1726541978/artify-store/posters/04-Poster_otpsma.jpg"
 		],
 		"status": true,
 		"stock": 20,
@@ -76,9 +68,7 @@
 		"shortDescription": "A peaceful ocean scene at sunset.",
 		"description": "This artwork captures the serene beauty of the ocean at sunset, with gentle waves and a vibrant sky. It's a perfect addition for creating a calm and relaxing ambiance.",
 		"thumbnails": [
-			"https://example.com/images/ocean-serenity-1.jpg",
-			"https://example.com/images/ocean-serenity-2.jpg",
-			"https://example.com/images/ocean-serenity-3.jpg"
+			"https://res.cloudinary.com/ferjen/image/upload/v1726541978/artify-store/posters/05-Poster_uj4j7a.jpg"
 		],
 		"status": true,
 		"stock": 35,
@@ -93,9 +83,7 @@
 		"shortDescription": "A colorful abstract geometric design.",
 		"description": "This poster features a bold and vibrant geometric design, perfect for adding a pop of color and a modern touch to any space.",
 		"thumbnails": [
-			"https://example.com/images/vibrant-geometrics-1.jpg",
-			"https://example.com/images/vibrant-geometrics-2.jpg",
-			"https://example.com/images/vibrant-geometrics-3.jpg"
+			"https://res.cloudinary.com/ferjen/image/upload/v1726541978/artify-store/posters/06-Poster_r29lzn.jpg"
 		],
 		"status": true,
 		"stock": 25,
@@ -110,9 +98,7 @@
 		"shortDescription": "A minimalist Zen garden scene.",
 		"description": "This artwork captures the essence of tranquility with a minimalist Zen garden, featuring raked sand, smooth stones, and delicate plants. Ideal for creating a peaceful atmosphere.",
 		"thumbnails": [
-			"https://example.com/images/zen-garden-1.jpg",
-			"https://example.com/images/zen-garden-2.jpg",
-			"https://example.com/images/zen-garden-3.jpg"
+			"https://res.cloudinary.com/ferjen/image/upload/v1726541978/artify-store/posters/07-Poster_ohpero.jpg"
 		],
 		"status": true,
 		"stock": 40,
@@ -127,9 +113,7 @@
 		"shortDescription": "A vibrant cityscape at night.",
 		"description": "This poster showcases a bustling metropolis illuminated at night, capturing the energy and vibrancy of city life. Perfect for adding a dynamic touch to any room.",
 		"thumbnails": [
-			"https://example.com/images/metropolis-lights-1.jpg",
-			"https://example.com/images/metropolis-lights-2.jpg",
-			"https://example.com/images/metropolis-lights-3.jpg"
+			"https://res.cloudinary.com/ferjen/image/upload/v1726541979/artify-store/posters/08-Poster_ukjv5p.jpg"
 		],
 		"status": true,
 		"stock": 30,
@@ -144,9 +128,7 @@
 		"shortDescription": "An abstract representation of a golden horizon.",
 		"description": "This abstract artwork features a stunning golden horizon with soft gradients and bold strokes, creating a captivating visual experience.",
 		"thumbnails": [
-			"https://example.com/images/golden-horizon-1.jpg",
-			"https://example.com/images/golden-horizon-2.jpg",
-			"https://example.com/images/golden-horizon-3.jpg"
+			"https://res.cloudinary.com/ferjen/image/upload/v1726541979/artify-store/posters/09-Poster_yejs4q.jpg"
 		],
 		"status": true,
 		"stock": 25,

@@ -1,4 +1,5 @@
-{{!--views/products.handlebars--}}
+{{!-- views/products.handlebars --}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,34 +10,29 @@
 <body>
     <div class="container">
         <h1 class="text-center mt-4">Todos los Productos</h1>
-
+        
         <div class="row">
-            {{#if products.docs}}
-                {{#each products.docs}}
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="{{this.thumbnails.[0]}}" class="card-img-top" alt="{{this.title}}" onerror="this.src='/path/to/default-image.jpg'">
-                        <div class="card-body">
-                            <h5 class="card-title">{{this.title}}</h5>
-                            <p class="card-text">{{this.shortDescription}}</p>
-                            <p class="card-text"><strong>${{this.price}}</strong></p>
-                            <a href="/products/{{this._id}}" class="btn btn-primary">Ver Detalles</a>
-                        </div>
+            {{#each products.docs}}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{this.thumbnails.[0]}}" class="card-img-top" alt="{{this.title}}" onerror="this.src='/path/to/default-image.jpg'">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.title}}</h5>
+                        <p class="card-text">{{this.shortDescription}}</p>
+                        <p class="card-text"><strong>${{this.price}}</strong></p>
+                        <button class="btn btn-primary add-to-cart" data-id="{{this._id}}">Agregar al Carrito</button>
                     </div>
                 </div>
-                {{/each}}
-            {{else}}
-                <p class="text-center">No se encontraron productos</p>
-            {{/if}}
+            </div>
+            {{/each}}
         </div>
 
         {{!-- Paginación --}}
-        {{#if products.totalPages}}
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
                 {{#if products.hasPrevPage}}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{products.prevPage}}&limit={{products.limit}}&sort={{products.sort}}">Anterior</a>
+                    <a class="page-link" href="?page={{products.prevPage}}">Anterior</a>
                 </li>
                 {{else}}
                 <li class="page-item disabled">
@@ -46,13 +42,13 @@
 
                 {{#each paginationNumbers}}
                 <li class="page-item {{#if this.active}}active{{/if}}">
-                    <a class="page-link" href="?page={{this.page}}&limit={{products.limit}}&sort={{products.sort}}">{{this.page}}</a>
+                    <a class="page-link" href="?page={{this.page}}">{{this.page}}</a>
                 </li>
                 {{/each}}
 
                 {{#if products.hasNextPage}}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{products.nextPage}}&limit={{products.limit}}&sort={{products.sort}}">Siguiente</a>
+                    <a class="page-link" href="?page={{products.nextPage}}">Siguiente</a>
                 </li>
                 {{else}}
                 <li class="page-item disabled">
@@ -61,7 +57,29 @@
                 {{/if}}
             </ul>
         </nav>
-        {{/if}}
     </div>
+
+    <script>
+        const cartId = 'your-cart-id'; // Obtener el ID del carrito actual o crearlo
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productId = e.target.getAttribute('data-id');
+                fetch(`/api/carts/${cartId}/product/${productId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ quantity: 1 })
+                }).then(response => response.json())
+                  .then(data => {
+                      alert('Producto agregado al carrito');
+                  })
+                  .catch(error => {
+                      console.error('Error al agregar al carrito:', error);
+                  });
+            });
+        });
+    </script>
 </body>
 </html>

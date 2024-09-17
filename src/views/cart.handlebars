@@ -1,0 +1,60 @@
+{{!--views/cart.handlebars--}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+</head>
+<body>
+    <h1 class="text-center">Tu Carrito</h1>
+
+    {{#if cart.products.length}}
+        <ul class="list-group">
+            {{#each cart.products}}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <h5>{{this.product.title}}</h5>
+                    <p>Precio: ${{this.product.price}}</p>
+                    <p>Cantidad: {{this.quantity}}</p>
+                </div>
+                <button class="btn btn-danger remove-product" data-id="{{this.product._id}}">Eliminar</button>
+            </li>
+            {{/each}}
+        </ul>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-danger" id="clear-cart">Vaciar Carrito</button>
+        </div>
+    {{else}}
+        <p class="text-center">Tu carrito está vacío.</p>
+    {{/if}}
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        // Eliminar producto del carrito
+        document.querySelectorAll('.remove-product').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productId = e.target.getAttribute('data-id');
+                const cartId = "{{cart._id}}"; // Se pasa el ID del carrito actual
+                socket.emit('removeFromCart', cartId, productId);
+            });
+        });
+
+        // Vaciar el carrito
+        document.getElementById('clear-cart').addEventListener('click', () => {
+            const cartId = "{{cart._id}}";
+            socket.emit('clearCart', cartId);
+        });
+
+        // Actualizar la vista del carrito después de eliminar productos
+        socket.on('updateCart', (updatedCart) => {
+            window.location.reload(); // Recargar la página para actualizar el carrito
+        });
+    </script>
+
+</body>
+</html>

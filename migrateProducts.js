@@ -1,3 +1,5 @@
+//migrateProducts.js
+
 import fs from 'fs';
 import mongoose from 'mongoose';
 import Product from './src/models/Product.js';

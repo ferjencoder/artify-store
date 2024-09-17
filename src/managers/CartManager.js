@@ -1,11 +1,12 @@
 // managers/CartManager.js
 
 import Cart from '../models/Cart.js';
+import mongoose from 'mongoose';
 
 export default class CartManager {
     async getCarts() {
         try {
-            return await Cart.find().populate('products.product'); // Mongoose para obtener los carritos y hacemos populate para obtener los detalles de los productos
+            return await Cart.find().populate('products.product'); // Obtener los carritos con los detalles de los productos
         } catch (error) {
             console.error('Error al obtener carritos:', error);
             return [];
@@ -13,10 +14,9 @@ export default class CartManager {
     }
 
     async addCart() {
-        const newCart = new Cart({ products: [] }); // Creamos un nuevo carrito vacío
-
+        const newCart = new Cart({ products: [] }); // Crear un nuevo carrito vacío
         try {
-            await newCart.save(); // Guardamos el nuevo carrito en MongoDB
+            await newCart.save(); // Guardar el nuevo carrito en MongoDB
             return newCart;
         } catch (error) {
             console.error('Error al guardar el carrito:', error);
@@ -24,9 +24,14 @@ export default class CartManager {
         }
     }
 
+    // Validar que el cartId sea un ObjectId válido antes de buscar en MongoDB
     async getCartById(id) {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            throw new Error('ID del carrito no válido');
+        }
+
         try {
-            const cart = await Cart.findById(id).populate('products.product'); // Obtenemos un carrito por su ID y populamos los productos
+            const cart = await Cart.findById(id).populate('products.product'); // Obtener un carrito por su ID y popular los productos
             if (!cart) {
                 throw new Error('Carrito no encontrado');
             }
@@ -38,23 +43,25 @@ export default class CartManager {
     }
 
     async addProductToCart(cartId, productId) {
+        if (!mongoose.Types.ObjectId.isValid(cartId)) {
+            throw new Error('ID del carrito no válido');
+        }
+
         try {
-            const cart = await Cart.findById(cartId); // Buscamos el carrito por su ID
+            const cart = await Cart.findById(cartId);
             if (!cart) {
                 throw new Error(`Carrito con id ${cartId} no encontrado`);
             }
 
-            const productIndex = cart.products.findIndex(p => p.product.toString() === productId); // Buscamos si el producto ya está en el carrito
+            const productIndex = cart.products.findIndex(p => p.product.toString() === productId);
 
             if (productIndex === -1) {
-                // Si no está, lo agregamos con cantidad 1
                 cart.products.push({ product: productId, quantity: 1 });
             } else {
-                // Si ya está, incrementamos la cantidad
                 cart.products[productIndex].quantity += 1;
             }
 
-            await cart.save(); // Guardamos los cambios en MongoDB
+            await cart.save();
             return cart;
         } catch (error) {
             console.error('Error al agregar el producto al carrito:', error);
@@ -62,9 +69,11 @@ export default class CartManager {
         }
     }
 
-    // Métodos adicionales para eliminar productos y vaciar carritos (según la consigna)
-
     async deleteProductFromCart(cartId, productId) {
+        if (!mongoose.Types.ObjectId.isValid(cartId)) {
+            throw new Error('ID del carrito no válido');
+        }
+
         try {
             const cart = await Cart.findById(cartId);
             if (!cart) {
@@ -81,13 +90,17 @@ export default class CartManager {
     }
 
     async updateCart(cartId, products) {
+        if (!mongoose.Types.ObjectId.isValid(cartId)) {
+            throw new Error('ID del carrito no válido');
+        }
+
         try {
             const cart = await Cart.findById(cartId);
             if (!cart) {
                 throw new Error(`Carrito con id ${cartId} no encontrado`);
             }
 
-            cart.products = products; // Actualizamos con el nuevo arreglo de productos
+            cart.products = products;
             await cart.save();
             return cart;
         } catch (error) {
@@ -97,13 +110,17 @@ export default class CartManager {
     }
 
     async deleteAllProductsFromCart(cartId) {
+        if (!mongoose.Types.ObjectId.isValid(cartId)) {
+            throw new Error('ID del carrito no válido');
+        }
+
         try {
             const cart = await Cart.findById(cartId);
             if (!cart) {
                 throw new Error(`Carrito con id ${cartId} no encontrado`);
             }
 
-            cart.products = []; // Vaciar todos los productos del carrito
+            cart.products = [];
             await cart.save();
             return cart;
         } catch (error) {
